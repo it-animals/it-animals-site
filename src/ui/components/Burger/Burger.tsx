@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import React, { useState } from "react";
 import cn from "classnames";
+
 const Burg = styled.button`
   display: flex;
   flex-direction: column;
@@ -21,7 +22,7 @@ const Burg = styled.button`
   }
 
   &.active .dash:nth-of-type(1) {
-    transform: rotate(45deg) translate(8px, 6px);
+    transform: translateY(5px);
   }
 
   &.active .dash:nth-of-type(2) {
@@ -29,19 +30,19 @@ const Burg = styled.button`
   }
 
   &.active .dash:nth-of-type(3) {
-    transform: rotate(-45deg) translate(8px, -7px);
+    transform: translateY(-5px);
   }
 `;
 
-export const Burger: React.FC<{ className?: string }> = ({ className }) => {
-  const [active, setActive] = useState(false);
-
+export const Burger: React.FC<{
+  className?: string;
+  isActive?: boolean;
+  onClick?: (val: boolean) => void;
+}> = ({ onClick = () => {}, isActive = false, className }) => {
   return (
     <Burg
-      className={cn((active && "active") || "", className)}
-      onClick={() => {
-        setActive(!active);
-      }}
+      className={cn((isActive && "active") || "", className)}
+      onClick={() => onClick(!isActive)}
     >
       <div className={"dash"} />
       <div className={"dash"} />

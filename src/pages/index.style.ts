@@ -15,7 +15,6 @@ export const Main = styled.main`
   );
   ${mxm(
     1366,
-
     css`
       background: linear-gradient(
         90deg,

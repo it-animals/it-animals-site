@@ -1,8 +1,15 @@
-import styled, { css } from "styled-components";
-import { Logo } from "../Logo/Logo";
 import Link from "next/link";
-import { mxm } from "../../styles/_mixin";
-import { Burger } from "../Burger/Burger";
+import { useState } from "react";
+import useWindowWidth from "react-hook-use-window-width";
+import {
+  BurgerHeader,
+  HeaderLogo,
+  HeaderStyle,
+  Item,
+  Navigation,
+  NavList,
+} from "./Header.style";
+import ScrollLock from "react-scrolllock";
 
 const items = [
   {
@@ -24,12 +31,33 @@ const items = [
 ];
 
 export const Header = () => {
+  const [isOpenMenu, setOpenMenu] = useState(false);
+  const wWidth = useWindowWidth();
+
+  const animVariants =
+    wWidth <= 1180
+      ? {
+          open: { width: "100vw", paddingLeft: "50px" },
+          close: { width: "0", paddingLeft: "0px" },
+        }
+      : {
+          open: { width: "auto", paddingLeft: "0px" },
+          close: { width: "auto", paddingLeft: "0px" },
+        };
+
+  const navAnimate = isOpenMenu ? animVariants.open : animVariants.close;
+  const navTransition = wWidth <= 1180 ? { duration: 0.3 } : { duration: 0 };
+
   return (
     <HeaderStyle>
-      <BurgerHeader />
-      <Logo />
+      <BurgerHeader isActive={isOpenMenu} onClick={setOpenMenu} />
+      <HeaderLogo />
       <Navigation>
-        <NavList>
+        <NavList
+          active={isOpenMenu}
+          animate={navAnimate}
+          transition={navTransition}
+        >
           {items.map(({ title, src }) => (
             <Item key={src}>
               <Link passHref={true} href={src}>
@@ -39,86 +67,7 @@ export const Header = () => {
           ))}
         </NavList>
       </Navigation>
+      <ScrollLock isActive={isOpenMenu} />
     </HeaderStyle>
   );
 };
-
-const BurgerHeader = styled(Burger)`
-  display: none;
-  ${mxm(
-    1180,
-    css`
-      display: flex;
-      margin-right: 35px;
-    `
-  )}
-`;
-
-const HeaderStyle = styled.header`
-  width: 100%;
-  height: 100px;
-  padding: 10px 0px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-size: 18px;
-  text-decoration: none;
-  ${mxm(
-    1180,
-    css`
-      display: flex;
-      justify-content: flex-start;
-    `
-  )}
-`;
-
-const NavList = styled.ul`
-  display: flex;
-  position: relative;
-  top: 3px;
-  align-items: center;
-  ${mxm(
-    1180,
-    css`
-      display: none;
-    `
-  )}
-`;
-
-const Item = styled.li`
-  margin-left: 70px;
-
-  &:last-child {
-    margin-right: 20px;
-  }
-
-  & a {
-    text-decoration: none;
-    color: black;
-    position: relative;
-    font-weight: bold;
-
-    &:before {
-      transition: 0.2s ease-in-out;
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: -5px;
-      width: 0;
-      background-color: black;
-      height: 2px;
-    }
-
-    &:hover {
-      &:before {
-        width: calc(100% + 5px);
-      }
-    }
-  }
-`;
-
-const Navigation = styled.nav`
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-`;

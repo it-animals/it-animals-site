@@ -1,8 +1,10 @@
 import {
   css,
   DefaultTheme,
+  FlattenInterpolation,
   FlattenSimpleInterpolation,
   ThemedCssFunction,
+  ThemedStyledProps,
 } from "styled-components";
 
 export function hexToRgb(hex: string) {
@@ -16,7 +18,12 @@ export function hexToRgb(hex: string) {
     : null;
 }
 
-export const mxm = (width: number, rules: FlattenSimpleInterpolation) => css`
+class AnyIfEmpty<T> {}
+
+export const mxm = (
+  width: number,
+  rules: FlattenInterpolation<ThemedStyledProps<any, AnyIfEmpty<any>>>
+) => css`
   @media screen and (max-width: ${width}px) {
     ${rules}
   }

@@ -20,6 +20,7 @@ export const GlobalStyle = createGlobalStyle`
   body {
     font-family: ${v.primaryFont};
     font-size: 16px;
+    overflow-x: hidden;
   }
 
   .main-nav{
