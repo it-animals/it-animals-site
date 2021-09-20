@@ -2,37 +2,19 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import { Wrapper } from "../ui/components/Wrapper/Wrapper";
 import { Header } from "../ui/components/Header/Header";
-import styled, { css } from "styled-components";
-import { hexToRgb, mxm } from "../ui/styles/_mixin";
-import v from "../ui/styles/_variables";
 import Image from "next/image";
 import { AccentButton } from "../ui/components/AccentButton/AccentButton";
+import {
+  Accent,
+  AccentText,
+  Content,
+  ContentText,
+  Heading,
+  Main,
+  TeamImage,
+} from "./index.style";
+import { motion } from "framer-motion";
 
-const Main = styled.main`
-  height: 100vh;
-  background: rgb(255, 255, 255);
-  background: linear-gradient(
-    90deg,
-    ${v.backgroundColor} 0%,
-    ${v.backgroundColor} 300px,
-    ${v.primaryColor} 300px,
-    ${v.primaryColor} 100%
-  );
-  ${mxm(
-    1180,
-    css`
-      background: linear-gradient(
-        90deg,
-        ${v.backgroundColor} 0%,
-        ${v.backgroundColor} 75px,
-        ${v.primaryColor} 75px,
-        ${v.primaryColor} 100%
-      );
-      height: auto;
-    `
-  )}
-`;
-// todo - адаптив -> картинка и размер шрифта заголовка
 const Home: NextPage = () => {
   return (
     <div>
@@ -46,21 +28,39 @@ const Home: NextPage = () => {
           <Header />
           <Content>
             <ContentText>
-              <Heading>
+              <Heading
+                initial={{ opacity: 0, x: -50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 1 }}
+              >
                 Делаем продукты <br />
                 Автоматизируем бизес <br />
                 Едим детей <br />И просто красавчики
               </Heading>
-              <Accent>
+              <Accent
+                initial={{ opacity: 0, x: -50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 1, delay: 0.7 }}
+              >
                 <AccentButton title={"Узнать подробнее"} />
                 <AccentText>
                   «Самая дикая IT команда России. <br /> Качество - наше второе
-                  имя <br /> Пиво - третье! »
+                  имя. <br /> Пиво - третье!»
                 </AccentText>
               </Accent>
             </ContentText>
-            <TeamImage>
-              <Image src={"/images/it-animals.svg"} width={557} height={557} />
+            <TeamImage
+              initial={{ opacity: 0, y: -50, scale: 0 }}
+              animate={{ opacity: 1, y: 0, scale: 1, rotate: 1080 * 5 }}
+              transition={{ duration: 1, delay: 0.4 }}
+            >
+              <Image
+                layout={"responsive"}
+                objectFit={"cover"}
+                src={"/images/it-animals.svg"}
+                width={"100%"}
+                height={"100%"}
+              />
             </TeamImage>
           </Content>
         </Wrapper>
@@ -68,75 +68,5 @@ const Home: NextPage = () => {
     </div>
   );
 };
-
-const Heading = styled.h1`
-  font-size: 70px;
-  line-height: 80px;
-  font-family: ${v.secondaryFont};
-  text-transform: uppercase;
-  ${mxm(
-    1310,
-    css`
-      font-size: 50px;
-      line-height: 55px;
-    `
-  )}
-  ${mxm(
-    1180,
-    css`
-      font-size: 70px;
-      line-height: 80px;
-      font-family: ${v.secondaryFont};
-      text-transform: uppercase;
-    `
-  )}
-`;
-
-const Content = styled.div`
-  display: flex;
-  margin-top: 35px;
-  justify-content: space-between;
-  ${mxm(
-    1180,
-    css`
-      flex-direction: column;
-    `
-  )}
-`;
-
-const ContentText = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-const Accent = styled.div`
-  margin-top: 100px;
-  display: flex;
-  align-items: center;
-  ${mxm(
-    1310,
-    css`
-      margin-top: 200px;
-    `
-  )}
-  ${mxm(
-    1180,
-    css`
-      margin-top: 55px;
-    `
-  )}
-`;
-
-const AccentText = styled.p`
-  margin-left: 50px;
-  font-size: 22px;
-  line-height: 22px;
-`;
-
-const TeamImage = styled.div`
-  position: relative;
-  width: 320px;
-  top: -45px;
-`;
 
 export default Home;
