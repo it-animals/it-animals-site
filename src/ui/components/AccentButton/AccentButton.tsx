@@ -3,6 +3,7 @@ import v from "../../styles/_variables";
 import React from "react";
 
 const Layout = styled.div`
+  min-width: 120px;
   width: 120px;
   height: 120px;
   background-color: ${v.accentColor};

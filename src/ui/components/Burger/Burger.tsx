@@ -2,7 +2,7 @@ import styled from "styled-components";
 import React, { useState } from "react";
 import cn from "classnames";
 
-const Burg = styled.button`
+const Burg = styled.button<{ forPrimaryPage: boolean; isActive?: boolean }>`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -16,7 +16,8 @@ const Burg = styled.button`
   & .dash {
     width: 35px;
     height: 5px;
-    background: black;
+    background: ${(props) =>
+      props.forPrimaryPage ? "black" : props.isActive ? "black" : "white"};
     border-radius: 20px;
     transition: 0.25s;
   }
@@ -37,10 +38,18 @@ const Burg = styled.button`
 export const Burger: React.FC<{
   className?: string;
   isActive?: boolean;
+  forPrimaryPage?: boolean;
   onClick?: (val: boolean) => void;
-}> = ({ onClick = () => {}, isActive = false, className }) => {
+}> = ({
+  forPrimaryPage = false,
+  onClick = () => {},
+  isActive = false,
+  className,
+}) => {
   return (
     <Burg
+      isActive={isActive}
+      forPrimaryPage={forPrimaryPage}
       className={cn((isActive && "active") || "", className)}
       onClick={() => onClick(!isActive)}
     >

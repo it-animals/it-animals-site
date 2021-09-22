@@ -1,10 +1,12 @@
 import styled, { css } from "styled-components";
-import { mxm } from "../../styles/_mixin";
+import { mxm } from "../../../styles/_mixin";
 import React from "react";
 
 const Content = styled.div`
   max-width: 1920px;
   margin: 0 auto;
+  position: relative;
+  z-index: 16;
   ${mxm(
     1920,
     css`
@@ -14,6 +16,6 @@ const Content = styled.div`
   )}
 `;
 
-export const Wrapper: React.FC<unknown> = ({ children }) => {
-  return <Content>{children}</Content>;
+export const Wrapper: ComponentType<unknown> = ({ className, children }) => {
+  return <Content className={className}>{children}</Content>;
 };

@@ -8,10 +8,10 @@ export const Main = styled.main`
   background: rgb(255, 255, 255);
   background: linear-gradient(
     90deg,
-    ${v.backgroundColor} 0%,
-    ${v.backgroundColor} 300px,
-    ${v.backgroundAccent} 300px,
-    ${v.backgroundAccent} 100%
+    transparent 0%,
+    transparent 300px,
+    ${v.primaryColor} 300px,
+    ${v.primaryColor} 100%
   );
   ${mxm(
     1366,
@@ -20,8 +20,8 @@ export const Main = styled.main`
         90deg,
         ${v.backgroundColor} 0%,
         ${v.backgroundColor} 75px,
-        ${v.backgroundAccent} 75px,
-        ${v.backgroundAccent} 100%
+        ${v.primaryColor} 75px,
+        ${v.primaryColor} 100%
       );
       height: auto;
     `
@@ -91,7 +91,7 @@ export const Accent = styled(motion.div)`
     1366,
     css`
       align-self: flex-end;
-      margin-top: 55px;
+      margin-top: 15px;
     `
   )}
 `;
@@ -99,6 +99,7 @@ export const AccentText = styled.p`
   margin-left: 50px;
   font-size: 22px;
   line-height: 22px;
+  margin-bottom: 0;
   ${mxm(
     535,
     css`

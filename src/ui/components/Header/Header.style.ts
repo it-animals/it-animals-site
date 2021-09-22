@@ -5,6 +5,7 @@ import { Logo } from "../Logo/Logo";
 import { motion } from "framer-motion";
 import { rgba } from "polished";
 import v from "../../styles/_variables";
+import { Wrapper } from "../PageComponent/Wrapper/Wrapper";
 
 export const BurgerHeader = styled(Burger)`
   display: none;
@@ -22,16 +23,28 @@ export const HeaderLogo = styled(Logo)`
   position: relative;
   z-index: 18;
 `;
-export const HeaderStyle = styled.header`
+export const HeaderStyle = styled.header<{ forPreviewPage: boolean }>`
   width: 100%;
-  height: 100px;
-  padding: 10px 0px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  height: 65px;
+  z-index: 20;
+  padding: 10px 0;
   font-size: 18px;
   position: relative;
   text-decoration: none;
+  background-color: ${(props) =>
+    props.forPreviewPage ? "transparent" : v.primaryColor};
+  ${mxm(
+    1180,
+    css`
+      height: 65px;
+    `
+  )}
+`;
+
+export const HeaderWrapper = styled(Wrapper)`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   ${mxm(
     1180,
     css`
@@ -40,6 +53,7 @@ export const HeaderStyle = styled.header`
     `
   )}
 `;
+
 export const NavList = styled(motion.ul)<{ active: boolean }>`
   display: flex;
   position: relative;
@@ -51,9 +65,9 @@ export const NavList = styled(motion.ul)<{ active: boolean }>`
       position: absolute;
       background-color: ${rgba(v.backgroundColor, 0.95)};
       display: block;
-      top: 0;
+      top: -10px;
       padding-top: 120px;
-      left: -5px;
+      left: 0px;
       z-index: 15;
       height: 100vh;
       overflow-x: hidden;
@@ -61,7 +75,7 @@ export const NavList = styled(motion.ul)<{ active: boolean }>`
     `
   )}
 `;
-export const Item = styled.li`
+export const NavItem = styled.li<{ isOpen: boolean }>`
   margin-left: 70px;
 
   &:last-child {
@@ -70,7 +84,7 @@ export const Item = styled.li`
 
   & a {
     text-decoration: none;
-    color: black;
+    color: ${(props) => (props.isOpen ? "black" : "white")};
     position: relative;
     font-weight: bold;
 
@@ -81,8 +95,8 @@ export const Item = styled.li`
       left: 0;
       bottom: -5px;
       width: 0;
-      background-color: black;
-      height: 2px;
+      background-color: ${(props) => (props.isOpen ? "black" : "white")};
+      height: ${(props) => (props.isOpen ? "4px" : "2px")};
     }
 
     &:hover {

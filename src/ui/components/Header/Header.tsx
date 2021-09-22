@@ -1,11 +1,12 @@
 import Link from "next/link";
-import { useState } from "react";
+import React, { useState } from "react";
 import useWindowWidth from "react-hook-use-window-width";
 import {
   BurgerHeader,
   HeaderLogo,
   HeaderStyle,
-  Item,
+  HeaderWrapper,
+  NavItem,
   Navigation,
   NavList,
 } from "./Header.style";
@@ -18,7 +19,7 @@ const items = [
   },
   {
     title: "Команда",
-    src: "/comand",
+    src: "/command",
   },
   {
     title: "Блог",
@@ -30,7 +31,9 @@ const items = [
   },
 ];
 
-export const Header = () => {
+export const Header: React.FC<{ forPreviewPage?: boolean }> = ({
+  forPreviewPage = false,
+}) => {
   const [isOpenMenu, setOpenMenu] = useState(false);
   const wWidth = useWindowWidth();
 
@@ -49,25 +52,31 @@ export const Header = () => {
   const navTransition = wWidth <= 1180 ? { duration: 0.3 } : { duration: 0 };
 
   return (
-    <HeaderStyle>
-      <BurgerHeader isActive={isOpenMenu} onClick={setOpenMenu} />
-      <HeaderLogo />
-      <Navigation>
-        <NavList
-          active={isOpenMenu}
-          animate={navAnimate}
-          transition={navTransition}
-        >
-          {items.map(({ title, src }) => (
-            <Item key={src}>
-              <Link passHref={true} href={src}>
-                <a>{title}</a>
-              </Link>
-            </Item>
-          ))}
-        </NavList>
-      </Navigation>
-      <ScrollLock isActive={isOpenMenu} />
+    <HeaderStyle forPreviewPage={forPreviewPage}>
+      <HeaderWrapper>
+        <BurgerHeader
+          forPrimaryPage={forPreviewPage}
+          isActive={isOpenMenu}
+          onClick={setOpenMenu}
+        />
+        <HeaderLogo coloredLogo={!forPreviewPage} />
+        <Navigation>
+          <NavList
+            active={isOpenMenu}
+            animate={navAnimate}
+            transition={navTransition}
+          >
+            {items.map(({ title, src }) => (
+              <NavItem isOpen={isOpenMenu} key={src}>
+                <Link passHref={true} href={src}>
+                  <a>{title}</a>
+                </Link>
+              </NavItem>
+            ))}
+          </NavList>
+        </Navigation>
+        <ScrollLock isActive={isOpenMenu} />
+      </HeaderWrapper>
     </HeaderStyle>
   );
 };

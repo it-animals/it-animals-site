@@ -2,37 +2,42 @@ import styled, { createGlobalStyle, css } from "styled-components";
 import { _reset } from "./_reset";
 import v from "./_variables";
 import { _fonts } from "./_fonts";
+import { _headings } from "./elements/_headings";
 
 const includes = css`
   ${_reset}
   ${_fonts}
+  ${_headings}
 `;
 
 export const GlobalStyle = createGlobalStyle`
+  body {
+    font-size: 16px;
+    line-height: 24px;
+    position: relative;
+  }
+
   ${includes}
+  
   * {
     box-sizing: border-box;
   }
-  
-  html{
+
+  html {
     background-color: ${v.backgroundColor};
   }
+
   body {
     font-family: ${v.primaryFont};
-    font-size: 16px;
     overflow-x: hidden;
   }
 
-  .main-nav{
-    text-decoration: none;
-    color: ${v.textColorSecondary};
-    cursor: pointer;
-    font-weight: bold;
+  p {
+    margin-bottom: 1em;
+    font-size: 18px;
+    line-height: 26px;
   }
 
-  .main-nav:hover {
-    border-bottom: 1px solid ${v.textColorSecondary};
-    cursor: pointer;
-  }
-  
+
+
 `;

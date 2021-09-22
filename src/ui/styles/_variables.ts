@@ -8,7 +8,7 @@ export default {
   textColorPrimary: "white",
 
   backgroundAccent: "#AAE0F5",
-  backgroundColor: "#F2F2F2",
+  backgroundColor: "white",
 
   primaryFont: "Inter",
   secondaryFont: "AnotherCastle3",
