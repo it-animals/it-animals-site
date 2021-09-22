@@ -3,41 +3,16 @@ import Head from "next/head";
 import { NextPage } from "next";
 import { Header } from "../../ui/components/Header/Header";
 import { Wrapper } from "../../ui/components/PageComponent/Wrapper/Wrapper";
-import { PageSection } from "../../ui/components/PageComponent/PageSection/PageSection";
-import { MainHeading } from "../../ui/components/MainHeading/MainHeading";
-import styled, { css } from "styled-components";
-import { StickerGallery } from "../../ui/components/StickerGallery/StickerGallery";
 import { CommandList } from "../../ui/components/CommandList/CommandList";
 import { SectionSeparator } from "../../ui/components/SectionSeparator/SectionSeparator";
 import { BackgroundEffect } from "../../ui/components/BackgroundEffect/BackgroundEffect";
-import { mxm } from "../../ui/styles/_mixin";
-import { motion } from "framer-motion";
-
-const TextBlock = styled(motion.div)`
-  max-width: 550px;
-`;
-
-const TopLine = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-const Stickers = styled(StickerGallery)`
-  margin: 60px 40px 0 0;
-  ${mxm(
-    800,
-    css`
-      display: none;
-    `
-  )}
-`;
-
-const Section = styled.main`
-  margin-top: 35px;
-`;
-
-const Heading = motion.h2;
+import {
+  Heading,
+  Section,
+  Stickers,
+  TextBlock,
+  TopLine,
+} from "./command.style";
 
 const Command: NextPage = () => {
   return (

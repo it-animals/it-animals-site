@@ -1,4 +1,4 @@
-import styled, { createGlobalStyle, css } from "styled-components";
+import { createGlobalStyle, css } from "styled-components";
 import { _reset } from "./_reset";
 import v from "./_variables";
 import { _fonts } from "./_fonts";

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import React, { useState } from "react";
+import React from "react";
 import cn from "classnames";
 
 const Burg = styled.button<{ forPrimaryPage: boolean; isActive?: boolean }>`

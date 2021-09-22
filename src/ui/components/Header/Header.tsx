@@ -6,8 +6,8 @@ import {
   HeaderLogo,
   HeaderStyle,
   HeaderWrapper,
-  NavItem,
   Navigation,
+  NavItem,
   NavList,
 } from "./Header.style";
 import ScrollLock from "react-scrolllock";

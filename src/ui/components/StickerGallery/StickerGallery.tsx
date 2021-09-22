@@ -1,6 +1,5 @@
 import styled, { keyframes } from "styled-components";
 import v from "../../styles/_variables";
-import { rgba } from "polished";
 
 const rotate = keyframes`
   from {

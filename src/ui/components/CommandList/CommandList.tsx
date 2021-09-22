@@ -1,11 +1,11 @@
 import styled, { css } from "styled-components";
 import v from "../../styles/_variables";
 import { Wrapper } from "../PageComponent/Wrapper/Wrapper";
-import Image from "next/image";
 import { rgba } from "polished";
 import { mxm } from "../../styles/_mixin";
-import { SectionSeparator } from "../SectionSeparator/SectionSeparator";
 import { motion } from "framer-motion";
+import { Button } from "../Button/Button";
+import Link from "next/link";
 
 const Section = styled.section`
   width: 100%;
@@ -93,6 +93,11 @@ const Decoration = styled.img`
   )}
 `;
 
+const CardButton = styled(Button)`
+  margin-top: 20px;
+  min-width: 140px;
+`;
+
 export const CommandList: ComponentType<unknown> = ({ className }) => {
   return (
     <Section className={className}>
@@ -114,6 +119,11 @@ export const CommandList: ComponentType<unknown> = ({ className }) => {
               </CardTextContent>
               <CardDescription>Люблю пивко и поиграть</CardDescription>
               <CardDescription>Доцкер - мое второе я</CardDescription>
+              <Link href={"/command/dima"}>
+                <a>
+                  <CardButton>Подробнее</CardButton>
+                </a>
+              </Link>
             </Card>
             <Card
               initial={{ opacity: 0, y: -50 }}
@@ -130,6 +140,11 @@ export const CommandList: ComponentType<unknown> = ({ className }) => {
               </CardTextContent>
               <CardDescription>Люблю пивко и поиграть</CardDescription>
               <CardDescription>Доцкер - мое второе я</CardDescription>
+              <Link href={"/command/ilya"}>
+                <a>
+                  <CardButton>Подробнее</CardButton>
+                </a>
+              </Link>
             </Card>
             <Card
               initial={{ opacity: 0, y: -50 }}
@@ -146,6 +161,11 @@ export const CommandList: ComponentType<unknown> = ({ className }) => {
               </CardTextContent>
               <CardDescription>Люблю пивко и поиграть</CardDescription>
               <CardDescription>Доцкер - мое второе я</CardDescription>
+              <Link href={"/command/marina"}>
+                <a>
+                  <CardButton>Подробнее</CardButton>
+                </a>
+              </Link>
             </Card>
             <Card
               initial={{ opacity: 0, y: -50 }}
@@ -161,6 +181,11 @@ export const CommandList: ComponentType<unknown> = ({ className }) => {
               </CardTextContent>
               <CardDescription>Люблю пивко и поиграть</CardDescription>
               <CardDescription>Доцкер - мое второе я</CardDescription>
+              <Link href={"/command/sergey"}>
+                <a>
+                  <CardButton>Подробнее</CardButton>
+                </a>
+              </Link>
             </Card>
           </CardList>
           <Decoration src={"/images/unicorn1.svg"} height={299} width={120} />

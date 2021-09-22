@@ -13,9 +13,6 @@ import {
   Main,
   TeamImage,
 } from "./index.style";
-import { motion } from "framer-motion";
-import Particles from "react-particles-js";
-import v from "./../ui/styles/_variables";
 import { BackgroundEffect } from "../ui/components/BackgroundEffect/BackgroundEffect";
 import { CenterContent } from "../ui/components/CenterContent/CenterContent";
 

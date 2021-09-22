@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import v from "../../styles/_variables";
 import Particles from "react-particles-js";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import useWindowWidth from "react-hook-use-window-width";
 
 export const Background = styled.div<{ forPreview: boolean }>`
@@ -15,9 +15,8 @@ export const BackgroundEffect: ComponentType<{
   width?: string;
   height?: string;
   forPreview?: boolean;
-}> = ({ forPreview = false, width, height }) => {
+}> = React.memo(({ forPreview = false, width, height }) => {
   const [effectWidth, setEffectWidth] = useState("0px");
-
   const [wHeight, setHeight] = useState(0);
   const wWidth = useWindowWidth();
 
@@ -29,7 +28,11 @@ export const BackgroundEffect: ComponentType<{
     }
     setEffectWidth(width ?? "100%");
   }, [wWidth]);
-
+  useEffect(() => {
+    setTimeout(() => {
+      setHeight(1);
+    }, 50);
+  }, []);
   //Счет высоты body
   useEffect(() => {
     if (document) {
@@ -84,4 +87,4 @@ export const BackgroundEffect: ComponentType<{
       />
     </Background>
   );
-};
+});

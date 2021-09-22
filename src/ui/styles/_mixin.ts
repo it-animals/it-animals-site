@@ -1,9 +1,6 @@
 import {
   css,
-  DefaultTheme,
   FlattenInterpolation,
-  FlattenSimpleInterpolation,
-  ThemedCssFunction,
   ThemedStyledProps,
 } from "styled-components";
 
