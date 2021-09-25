@@ -14,10 +14,10 @@ const MarinaPage: ComponentType<unknown> = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <BackgroundEffect forPreview={false} />
+        <BackgroundEffect config={"marina"} forPreview={false} />
         <Header />
         <Wrapper>
-          <BusinessCard path={"/images/business_card_marina.svg"} />
+          <BusinessCard type={"marina"} />
         </Wrapper>
       </main>
     </>

@@ -14,10 +14,10 @@ const SergeyPage: ComponentType<unknown> = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <BackgroundEffect forPreview={false} />
+        <BackgroundEffect config={"sergey"} forPreview={false} />
         <Header />
         <Wrapper>
-          <BusinessCard path={"/images/business_card_serhey.svg"} />
+          <BusinessCard type={"sergey"} />
         </Wrapper>
       </main>
     </>

@@ -111,7 +111,7 @@ export const CommandList: ComponentType<unknown> = ({ className }) => {
               transition={{ ease: ["easeInOut"], duration: 0.7, delay: 0.7 }}
             >
               <ImageWrap>
-                <ImageSticker src={"/images/sticker_dima.svg"} alt="" />
+                <ImageSticker src={"/images/dima/sticker_dima.svg"} alt="" />
               </ImageWrap>
               <CardTextContent>
                 <CardHeading>Дмитрий</CardHeading>
@@ -131,7 +131,7 @@ export const CommandList: ComponentType<unknown> = ({ className }) => {
               transition={{ ease: ["easeInOut"], duration: 0.7, delay: 1 }}
             >
               <ImageWrap>
-                <ImageSticker src={"/images/sticker_ilya.svg"} alt="" />
+                <ImageSticker src={"/images/ilya/sticker_ilya.svg"} alt="" />
               </ImageWrap>
 
               <CardTextContent>
@@ -152,7 +152,10 @@ export const CommandList: ComponentType<unknown> = ({ className }) => {
               transition={{ ease: ["easeInOut"], duration: 0.7, delay: 1.2 }}
             >
               <ImageWrap>
-                <ImageSticker src={"/images/sticker_marina.svg"} alt="" />
+                <ImageSticker
+                  src={"/images/marina/sticker_marina.svg"}
+                  alt=""
+                />
               </ImageWrap>
 
               <CardTextContent>
@@ -173,7 +176,10 @@ export const CommandList: ComponentType<unknown> = ({ className }) => {
               transition={{ ease: ["easeInOut"], duration: 0.7, delay: 1.4 }}
             >
               <ImageWrap>
-                <ImageSticker src={"/images/sticker_sergey.svg"} alt="" />
+                <ImageSticker
+                  src={"/images/sergey/sticker_sergey.svg"}
+                  alt=""
+                />
               </ImageWrap>
               <CardTextContent>
                 <CardHeading>Сергей</CardHeading>

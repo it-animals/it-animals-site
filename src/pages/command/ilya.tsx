@@ -15,10 +15,10 @@ const DimaPage: ComponentType<unknown> = () => {
       </Head>
 
       <main>
-        <BackgroundEffect forPreview={false} />
+        <BackgroundEffect config={"ilya"} forPreview={false} />
         <Header />
         <Wrapper>
-          <BusinessCard path={"/images/business_card_ilya.svg"} />
+          <BusinessCard type={"ilya"} />
         </Wrapper>
       </main>
     </>

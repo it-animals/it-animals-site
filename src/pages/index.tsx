@@ -53,8 +53,8 @@ const Home: NextPage = () => {
                 </Accent>
               </ContentText>
               <TeamImage
-                initial={{ opacity: 0, y: -50, scale: 0 }}
-                animate={{ opacity: 1, y: 0, scale: 1, rotate: 1080 * 5 }}
+                initial={{ opacity: 0, y: -100 }}
+                animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1, delay: 0.4 }}
               >
                 <Image

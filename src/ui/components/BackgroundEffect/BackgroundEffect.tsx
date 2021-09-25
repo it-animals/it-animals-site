@@ -3,6 +3,7 @@ import v from "../../styles/_variables";
 import Particles from "react-particles-js";
 import React, { useEffect, useState } from "react";
 import useWindowWidth from "react-hook-use-window-width";
+import { particlesConfig } from "./effectConfig";
 
 export const Background = styled.div<{ forPreview: boolean }>`
   position: absolute;
@@ -15,11 +16,11 @@ export const BackgroundEffect: ComponentType<{
   width?: string;
   height?: string;
   forPreview?: boolean;
-}> = React.memo(({ forPreview = false, width, height }) => {
+  config?: keyof typeof particlesConfig;
+}> = React.memo(({ forPreview = false, width, height, config = "default" }) => {
   const [effectWidth, setEffectWidth] = useState("0px");
   const [wHeight, setHeight] = useState(0);
   const wWidth = useWindowWidth();
-
   // Счет ширины окна
   useEffect(() => {
     if (forPreview) {
@@ -51,39 +52,7 @@ export const BackgroundEffect: ComponentType<{
       <Particles
         width={effectWidth ?? "100%"}
         height={`${wHeight}px`}
-        params={{
-          particles: {
-            number: {
-              value: 160,
-              density: {
-                enable: false,
-              },
-            },
-            color: {
-              value: [v.secondColor, v.primaryColor, v.accentColor],
-            },
-            size: {
-              value: 8,
-              random: true,
-              anim: {
-                speed: 2,
-                size_min: 0.3,
-              },
-            },
-            line_linked: {
-              enable: false,
-            },
-            shape: {
-              type: ["square"],
-            },
-            move: {
-              random: false,
-              speed: 0.2,
-              direction: "top",
-              out_mode: "out",
-            },
-          },
-        }}
+        params={particlesConfig[config!]}
       />
     </Background>
   );
