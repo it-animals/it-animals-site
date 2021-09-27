@@ -22,8 +22,8 @@ const items = [
     src: "/command",
   },
   {
-    title: "Блог",
-    src: "/adasd",
+    title: "Деятельность",
+    src: "/history",
   },
   {
     title: "Связь",

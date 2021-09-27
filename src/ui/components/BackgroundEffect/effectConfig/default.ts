@@ -4,7 +4,7 @@ import { IOptions, RecursivePartial } from "tsparticles";
 export default {
   particles: {
     number: {
-      value: 160,
+      value: 25,
       density: {
         enable: false,
       },

@@ -1,5 +1,6 @@
 import { css } from "styled-components";
 import v from "../_variables";
+import { mxm } from "../_mixin";
 
 export const _headings = css`
   h1,
@@ -14,6 +15,12 @@ export const _headings = css`
   h2 {
     font-size: 70px;
     line-height: 80px;
+    ${mxm(
+      600,
+      css`
+        font-size: 55px;
+      `
+    )}
   }
   h5 {
     font-size: 32px;

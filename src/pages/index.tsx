@@ -15,8 +15,10 @@ import {
 } from "./index.style";
 import { BackgroundEffect } from "../ui/components/BackgroundEffect/BackgroundEffect";
 import { CenterContent } from "../ui/components/CenterContent/CenterContent";
+import { contentMainPageInfo, getMainPageInfo } from "../lib/mainPage";
+import reactHTMLParser from "react-html-parser";
 
-const Home: NextPage = () => {
+const Home: NextPage<{ data: contentMainPageInfo }> = ({ data }) => {
   return (
     <>
       <Head>
@@ -36,9 +38,7 @@ const Home: NextPage = () => {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 1 }}
                 >
-                  Делаем продукты <br />
-                  Автоматизируем бизес <br />
-                  Едим детей <br />И просто красавчики
+                  {reactHTMLParser(data.heading)}
                 </Heading>
                 <Accent
                   initial={{ opacity: 0, x: -50 }}
@@ -46,10 +46,7 @@ const Home: NextPage = () => {
                   transition={{ duration: 1, delay: 0.7 }}
                 >
                   <AccentButton title={"Узнать подробнее"} />
-                  <AccentText>
-                    «Самая дикая IT команда России. <br /> Качество - наше
-                    второе имя. <br /> Пиво - третье!»
-                  </AccentText>
+                  <AccentText>{reactHTMLParser(data.accent)}</AccentText>
                 </Accent>
               </ContentText>
               <TeamImage
@@ -72,5 +69,13 @@ const Home: NextPage = () => {
     </>
   );
 };
-
+export async function getStaticProps() {
+  // Получение и прокидывание данных перед самой сборкой статики
+  const data = getMainPageInfo();
+  return {
+    props: {
+      data,
+    },
+  };
+}
 export default Home;

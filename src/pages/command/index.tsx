@@ -6,15 +6,24 @@ import { Wrapper } from "../../ui/components/PageComponent/Wrapper/Wrapper";
 import { CommandList } from "../../ui/components/CommandList/CommandList";
 import { SectionSeparator } from "../../ui/components/SectionSeparator/SectionSeparator";
 import { BackgroundEffect } from "../../ui/components/BackgroundEffect/BackgroundEffect";
+import { Stickers } from "./command.style";
 import {
   Heading,
   Section,
-  Stickers,
   TextBlock,
   TopLine,
-} from "./command.style";
-
-const Command: NextPage = () => {
+} from "../../ui/styles/_pageElements";
+import { getMainPageInfo } from "../../lib/mainPage";
+import {
+  contentCommandPageInfo,
+  getCommandPageInfo,
+} from "../../lib/commanPage";
+import reactHTMLParser from "react-html-parser";
+import { contentCommandUserInfo, getCommandInfo } from "../../lib/commandData";
+const Command: NextPage<{
+  pageData: contentCommandPageInfo;
+  commandData: contentCommandUserInfo[];
+}> = ({ pageData, commandData }) => {
   return (
     <>
       <Head>
@@ -34,7 +43,7 @@ const Command: NextPage = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ ease: ["easeInOut"], duration: 0.7, delay: 0 }}
                 >
-                  О команде
+                  {reactHTMLParser(pageData.heading)}
                 </Heading>
                 <TextBlock
                   initial={{ opacity: 0, y: -50 }}
@@ -45,18 +54,7 @@ const Command: NextPage = () => {
                     delay: 0.4,
                   }}
                 >
-                  <p>IT-animals – это самая крутая команда работки в России</p>
-                  <p>
-                    Команда ― это группа лиц, объединённая общими мотивами,
-                    интересами, идеалами, действующая сообща. Участники команды
-                    объединены поддержкой друг друга и несут коллективную
-                    ответственность за результат деятельности всей команды.
-                  </p>
-                  <p>
-                    Команды подходят для решения задач высокой сложности, ведь
-                    каждый участник команды специализируется на выполнении
-                    какого-либо своего одного дела.
-                  </p>
+                  {reactHTMLParser(pageData.description)}
                 </TextBlock>
               </div>
               <Stickers />
@@ -64,11 +62,23 @@ const Command: NextPage = () => {
             <SectionSeparator />
           </Wrapper>
         </Section>
-        <CommandList />
+        <CommandList data={commandData} />
         <SectionSeparator inverted={true} />
       </main>
     </>
   );
 };
+
+export async function getStaticProps() {
+  // Получение и прокидывание данных перед самой сборкой статики
+  const pageData = getCommandPageInfo();
+  const commandData = getCommandInfo();
+  return {
+    props: {
+      pageData,
+      commandData,
+    },
+  };
+}
 
 export default Command;

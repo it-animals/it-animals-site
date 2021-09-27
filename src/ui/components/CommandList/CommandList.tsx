@@ -1,198 +1,61 @@
-import styled, { css } from "styled-components";
-import v from "../../styles/_variables";
 import { Wrapper } from "../PageComponent/Wrapper/Wrapper";
-import { rgba } from "polished";
-import { mxm } from "../../styles/_mixin";
-import { motion } from "framer-motion";
-import { Button } from "../Button/Button";
 import Link from "next/link";
+import { contentCommandUserInfo } from "../../../lib/commandData";
+import ReactHTMLParser from "react-html-parser";
+import {
+  Card,
+  CardButton,
+  CardDescription,
+  CardHeading,
+  CardList,
+  CardTextContent,
+  Decoration,
+  ImageSticker,
+  ImageWrap,
+  Section,
+  Subtitle,
+  TeamContentLine,
+} from "./CommandList.style";
 
-const Section = styled.section`
-  width: 100%;
-  padding: 20px 0;
-  min-height: 100px;
-`;
-
-const CardList = styled.ul`
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  column-gap: 40px;
-  row-gap: 40px;
-  flex-wrap: wrap;
-`;
-
-const Card = styled(motion.li)`
-  display: flex;
-  width: 310px;
-  padding: 30px 20px;
-  display: flex;
-  border: 1px solid ${rgba(v.secondColor, 0.2)};
-  border-radius: 3px;
-  flex-direction: column;
-  background-color: ${v.backgroundColor};
-  position: relative;
-  z-index: 1;
-  align-items: center;
-`;
-
-const ImageWrap = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: center;
-`;
-const ImageSticker = styled.img`
-  width: 240px;
-  display: block;
-  height: 240px;
-  margin: 0 auto;
-`;
-
-const CardTextContent = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-const CardHeading = styled.h5`
-  margin-bottom: 0;
-  line-height: 36px;
-  font-size: 36px;
-  text-align: center;
-`;
-
-const Subtitle = styled.p`
-  font-size: 15px;
-  text-transform: uppercase;
-  margin-bottom: 4px;
-  text-align: center;
-`;
-
-const CardDescription = styled.p`
-  font-size: 14px;
-  color: ${v.secondColor};
-  line-height: 18px;
-  font-weight: 300;
-  text-align: center;
-  margin-bottom: 0;
-`;
-
-const TeamContentLine = styled.div`
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  width: 100%;
-`;
-
-const Decoration = styled.img`
-  ${mxm(
-    1780,
-    css`
-      display: none;
-    `
-  )}
-`;
-
-const CardButton = styled(Button)`
-  margin-top: 20px;
-  min-width: 140px;
-`;
-
-export const CommandList: ComponentType<unknown> = ({ className }) => {
+export const CommandList: ComponentType<{ data: contentCommandUserInfo[] }> = ({
+  className,
+  data,
+}) => {
   return (
     <Section className={className}>
       <Wrapper>
         <TeamContentLine>
           <Decoration src={"/images/unicorn2.svg"} height={299} width={120} />
           <CardList>
-            <Card
-              initial={{ opacity: 0, y: -50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ ease: ["easeInOut"], duration: 0.7, delay: 0.7 }}
-            >
-              <ImageWrap>
-                <ImageSticker src={"/images/dima/sticker_dima.svg"} alt="" />
-              </ImageWrap>
-              <CardTextContent>
-                <CardHeading>Дмитрий</CardHeading>
-                <Subtitle>Backend</Subtitle>
-              </CardTextContent>
-              <CardDescription>Люблю пивко и поиграть</CardDescription>
-              <CardDescription>Доцкер - мое второе я</CardDescription>
-              <Link href={"/command/dima"}>
-                <a>
-                  <CardButton>Подробнее</CardButton>
-                </a>
-              </Link>
-            </Card>
-            <Card
-              initial={{ opacity: 0, y: -50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ ease: ["easeInOut"], duration: 0.7, delay: 1 }}
-            >
-              <ImageWrap>
-                <ImageSticker src={"/images/ilya/sticker_ilya.svg"} alt="" />
-              </ImageWrap>
+            {data.map((item, i) => (
+              <Card
+                key={item.name}
+                initial={{ opacity: 0, y: -50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{
+                  ease: ["easeInOut"],
+                  duration: 0.7,
+                  delay: 0.7 + 0.2 * i,
+                }}
+              >
+                <ImageWrap>
+                  <ImageSticker src={item.pathSticker} alt="" />
+                </ImageWrap>
+                <CardTextContent>
+                  <CardHeading>{item.name.split(" ")[0]}</CardHeading>
+                  <Subtitle>{item.job}</Subtitle>
+                </CardTextContent>
+                <CardDescription>
+                  {ReactHTMLParser(item.tagline)}
+                </CardDescription>
 
-              <CardTextContent>
-                <CardHeading>Илья</CardHeading>
-                <Subtitle>Team-lead</Subtitle>
-              </CardTextContent>
-              <CardDescription>Люблю пивко и поиграть</CardDescription>
-              <CardDescription>Доцкер - мое второе я</CardDescription>
-              <Link href={"/command/ilya"}>
-                <a>
-                  <CardButton>Подробнее</CardButton>
-                </a>
-              </Link>
-            </Card>
-            <Card
-              initial={{ opacity: 0, y: -50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ ease: ["easeInOut"], duration: 0.7, delay: 1.2 }}
-            >
-              <ImageWrap>
-                <ImageSticker
-                  src={"/images/marina/sticker_marina.svg"}
-                  alt=""
-                />
-              </ImageWrap>
-
-              <CardTextContent>
-                <CardHeading>Марина</CardHeading>
-                <Subtitle>Analyst</Subtitle>
-              </CardTextContent>
-              <CardDescription>Люблю пивко и поиграть</CardDescription>
-              <CardDescription>Доцкер - мое второе я</CardDescription>
-              <Link href={"/command/marina"}>
-                <a>
-                  <CardButton>Подробнее</CardButton>
-                </a>
-              </Link>
-            </Card>
-            <Card
-              initial={{ opacity: 0, y: -50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ ease: ["easeInOut"], duration: 0.7, delay: 1.4 }}
-            >
-              <ImageWrap>
-                <ImageSticker
-                  src={"/images/sergey/sticker_sergey.svg"}
-                  alt=""
-                />
-              </ImageWrap>
-              <CardTextContent>
-                <CardHeading>Сергей</CardHeading>
-                <Subtitle>Frontend</Subtitle>
-              </CardTextContent>
-              <CardDescription>Люблю пивко и поиграть</CardDescription>
-              <CardDescription>Доцкер - мое второе я</CardDescription>
-              <Link href={"/command/sergey"}>
-                <a>
-                  <CardButton>Подробнее</CardButton>
-                </a>
-              </Link>
-            </Card>
+                <Link href={item.link}>
+                  <a>
+                    <CardButton>Подробнее</CardButton>
+                  </a>
+                </Link>
+              </Card>
+            ))}
           </CardList>
           <Decoration src={"/images/unicorn1.svg"} height={299} width={120} />
         </TeamContentLine>
