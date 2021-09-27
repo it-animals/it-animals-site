@@ -7,6 +7,19 @@ import { TopLine, Section, Heading } from "../../ui/styles/_pageElements";
 import styled from "styled-components";
 import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
+import {
+  getHistoryContent,
+  getHistoryContentById,
+  getHistoryMediaContentById,
+  getHistoryPageData,
+  historyContentData,
+} from "../../lib/historyPage";
+import { router } from "next/client";
+import fs from "fs";
+import path from "path";
+import { getContentPath } from "../../lib/path";
+import { GetStaticProps, GetStaticPropsContext, NextPage } from "next";
+import ReactHTMLParser from "react-html-parser";
 const Content = styled.div`
   & ul {
     & li {
@@ -15,33 +28,33 @@ const Content = styled.div`
       margin-bottom: 5px;
     }
   }
+
   & b {
     font-weight: 700;
   }
 `;
-
 const images = [
   {
-    original: "https://picsum.photos/id/1018/1000/600/",
-    thumbnail: "https://picsum.photos/id/1018/250/150/",
+    original: "../../../../content/media/history/1/1472042719_15.jpg",
+    thumbnail: "../../../../content/media/history/1/1472042719_15.jpg",
   },
   {
     original: "https://picsum.photos/id/1015/1000/600/",
-    thumbnail: "https://picsum.photos/id/1015/250/150/",
   },
   {
     original: "https://picsum.photos/id/1019/1000/600/",
-    thumbnail: "https://picsum.photos/id/1019/250/150/",
   },
 ];
 
 const WrapperGallery = styled.div`
   max-width: 1200px;
   margin: 0 auto;
-  margin-top: 40px;
+  margin-top: 85px;
   padding-bottom: 60px;
 `;
-const IndividualHistoryPage = () => {
+const IndividualHistoryPage: NextPage<{
+  data: historyContentData & { media: string[] };
+}> = ({ data }) => {
   return (
     <>
       <Head>
@@ -55,50 +68,56 @@ const IndividualHistoryPage = () => {
         <Wrapper>
           <Section>
             <TopLine>
-              <Heading>123123</Heading>
+              <Heading>{ReactHTMLParser(data.heading)}</Heading>
             </TopLine>
-            <Content>
-              <p>asdadasdadasdvgsasdaqewqwe</p>
-              <p>
-                <a href="https://yandex.ru">Фрэнсис Хетлинг</a> (англ. Francis
-                Hetling) — <b>123</b> не существовавший пионер фотоискусства
-                ранней Викторианской эпохи, под именем которого британский
-                художник-руралист (англ.)русск. Грэм Овенден и фотограф Говард
-                Грей (англ.)русск. экспонировали в Национальной портретной
-                галерее в Лондоне на выставке в июле 1974 года и продавали
-                созданные ими снимки-мистификации в стиле и технике фотографий
-                XIX века. В 1980 году против Овендена и Грея был возбуждён
-                судебный иск. Официальная формулировка иска звучала как «сговор
-                [Грея и Овендена] между 1974 и 1978 годами с целью получения
-                собственности обманным путём». В ходе судебного процесса
-                выяснилось, что оба участника мистификации причастны к появлению
-                фотографий Хетлинга. Грей отвечал за техническую сторону
-                создания фотографий, а Овенден придал им внешний вид ранних
-                викторианских калотипов. Овенден заявил в суде, что цель
-                мистификации заключалась не в получении крупной суммы денег, а в
-                том, чтобы «показать истинный уровень тех, кто занимается
-                искусством, тех, кто объявляет себя экспертами, ничего не зная,
-                [и] тех, кто получает прибыль, превращая эстетические ценности в
-                финансовые». Грей и Овенден были оправданы решением коллегии
-                присяжных. Судебный процесс широко освещался в средствах
-                массовой информации Великобритании и анализируется в научных и
-                научно-популярных работах, посвящённых фальсификации
-                произведений искусства.
-              </p>
-              <ul>
-                <li>123</li>
-                <li>123</li>
-                <li>123</li>
-              </ul>
-            </Content>
+            <Content>{ReactHTMLParser(data.content)}</Content>
             <WrapperGallery>
-              <ImageGallery autoPlay={true} lazyLoad={true} items={images} />
+              {data.media.length > 0 && (
+                <ImageGallery
+                  autoPlay={true}
+                  lazyLoad={true}
+                  items={data.media.map((item) => ({
+                    original: item,
+                    thumbnail: item,
+                  }))}
+                />
+              )}
             </WrapperGallery>
           </Section>
         </Wrapper>
       </main>
     </>
   );
+};
+
+export async function getStaticPaths(context: any) {
+  // Чекаем, существуют ли указаные пути на файлы, если нет, то 404
+  const historyPostDirectory = path.join(getContentPath, "/history");
+  const files = fs.readdirSync(historyPostDirectory);
+  const paths = files.map((file) => ({
+    params: { id: file.replace(".md", "") },
+  }));
+  return {
+    paths,
+    fallback: false,
+  };
+}
+
+export const getStaticProps: GetStaticProps<any, { id: string }> = async ({
+  params,
+}) => {
+  //если путь на файл существует то грузим данные
+  const id = params!.id;
+  const data = getHistoryContentById(id);
+  const media = getHistoryMediaContentById(id);
+  return {
+    props: {
+      data: {
+        ...data,
+        media,
+      },
+    },
+  };
 };
 
 export default IndividualHistoryPage;

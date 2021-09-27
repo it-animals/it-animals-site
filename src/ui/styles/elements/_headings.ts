@@ -19,6 +19,7 @@ export const _headings = css`
       600,
       css`
         font-size: 55px;
+        line-height: 52px;
       `
     )}
   }
