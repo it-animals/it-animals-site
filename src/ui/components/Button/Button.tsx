@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import v from "../../styles/_variables";
+import React from "react";
 
 const Component = styled.button`
   outline: none;
@@ -17,7 +18,17 @@ const Component = styled.button`
     transform: scale(1.1);
     opacity: 1;
   }
+  &:disabled {
+    opacity: 0.5;
+    cursor: no-drop;
+  }
 `;
-export const Button: ComponentType<unknown> = ({ className, children }) => {
-  return <Component className={className}>{children}</Component>;
+export const Button: ComponentType<
+  unknown & React.ButtonHTMLAttributes<unknown>
+> = ({ className, children, ...rest }) => {
+  return (
+    <Component {...rest} className={className}>
+      {children}
+    </Component>
+  );
 };

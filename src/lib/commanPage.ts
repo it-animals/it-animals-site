@@ -9,6 +9,5 @@ export type contentCommandPageInfo = { heading: string; description: string };
 
 export const getCommandPageInfo = () => {
   const data = fs.readFileSync(contentDirectory, "utf8");
-  console.log(matter(data));
   return matter(data).data as contentCommandPageInfo;
 };

@@ -27,7 +27,7 @@ const items = [
   },
   {
     title: "Связь",
-    src: "/asdasd",
+    src: "/mail",
   },
 ];
 
