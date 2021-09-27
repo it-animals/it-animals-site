@@ -4,9 +4,11 @@ import { Wrapper } from "../ui/components/PageComponent/Wrapper/Wrapper";
 import { Header } from "../ui/components/Header/Header";
 import Image from "next/image";
 import { AccentButton } from "../ui/components/AccentButton/AccentButton";
+import Link from "next/link";
 import {
   Accent,
   AccentText,
+  AccentLink,
   Content,
   ContentText,
   Heading,
@@ -45,7 +47,11 @@ const Home: NextPage<{ data: contentMainPageInfo }> = ({ data }) => {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 1, delay: 0.7 }}
                 >
-                  <AccentButton title={"Узнать подробнее"} />
+                  <Link href={"/command/"}>
+                    <AccentLink>
+                      <AccentButton title={"Узнать подробнее"} />
+                    </AccentLink>
+                  </Link>
                   <AccentText>{reactHTMLParser(data.accent)}</AccentText>
                 </Accent>
               </ContentText>
@@ -69,6 +75,7 @@ const Home: NextPage<{ data: contentMainPageInfo }> = ({ data }) => {
     </>
   );
 };
+
 export async function getStaticProps() {
   // Получение и прокидывание данных перед самой сборкой статики
   const data = getMainPageInfo();
@@ -78,4 +85,5 @@ export async function getStaticProps() {
     },
   };
 }
+
 export default Home;

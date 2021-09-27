@@ -8,18 +8,16 @@ import styled from "styled-components";
 import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
 import {
-  getHistoryContent,
   getHistoryContentById,
   getHistoryMediaContentById,
-  getHistoryPageData,
   historyContentData,
 } from "../../lib/historyPage";
-import { router } from "next/client";
 import fs from "fs";
 import path from "path";
 import { getContentPath } from "../../lib/path";
 import { GetStaticProps, GetStaticPropsContext, NextPage } from "next";
 import ReactHTMLParser from "react-html-parser";
+import v from "../../ui/styles/_variables";
 const Content = styled.div`
   & ul {
     & li {
@@ -28,23 +26,27 @@ const Content = styled.div`
       margin-bottom: 5px;
     }
   }
-
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: ${v.primaryFont};
+    margin: 2rem 0;
+    font-weight: bold;
+  }
+  h6 {
+    font-size: 22px;
+  }
   & b {
     font-weight: 700;
   }
+  & time {
+    font-size: 14px;
+    font-weight: 700;
+  }
 `;
-const images = [
-  {
-    original: "../../../../content/media/history/1/1472042719_15.jpg",
-    thumbnail: "../../../../content/media/history/1/1472042719_15.jpg",
-  },
-  {
-    original: "https://picsum.photos/id/1015/1000/600/",
-  },
-  {
-    original: "https://picsum.photos/id/1019/1000/600/",
-  },
-];
 
 const WrapperGallery = styled.div`
   max-width: 1200px;
@@ -76,6 +78,8 @@ const IndividualHistoryPage: NextPage<{
                 <ImageGallery
                   autoPlay={true}
                   lazyLoad={true}
+                  slideDuration={700}
+                  slideInterval={10000}
                   items={data.media.map((item) => ({
                     original: item,
                     thumbnail: item,

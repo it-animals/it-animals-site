@@ -76,7 +76,7 @@ const History: NextPage<{
                 <Element
                   key={item.id}
                   className="vertical-timeline-element--work"
-                  date="13 – 15 Ноября 2020г"
+                  date={item.date}
                   iconStyle={timeLineIconStyle}
                 >
                   <CardHeading className="vertical-timeline-element-title">

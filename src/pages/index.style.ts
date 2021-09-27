@@ -81,6 +81,9 @@ export const ContentText = styled.div`
   display: flex;
   flex-direction: column;
 `;
+export const AccentLink = styled.a`
+  text-decoration: none;
+`;
 export const Accent = styled(motion.div)`
   margin-top: 100px;
   display: flex;
