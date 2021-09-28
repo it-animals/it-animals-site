@@ -20,7 +20,7 @@ import { contentMainPageInfo, getMainPageInfo } from "../lib/mainPage";
 import reactHTMLParser from "react-html-parser";
 
 const Home: NextPage<{ data: contentMainPageInfo }> = ({ data }) => {
-  console.log(process.env);
+  console.log(process.env.NODE_ENV);
   return (
     <>
       <Head>
