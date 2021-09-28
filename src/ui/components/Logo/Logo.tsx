@@ -1,7 +1,5 @@
 import Link from "next/link";
 import React from "react";
-import Logo1 from "/images/logo2.svg";
-import Logo2 from "/images/logo.svg";
 
 export const Logo: React.FC<{ className?: string; coloredLogo?: boolean }> = ({
   className,
@@ -11,7 +9,11 @@ export const Logo: React.FC<{ className?: string; coloredLogo?: boolean }> = ({
     <div className={className}>
       <Link href={"/"} passHref={true}>
         <a>
-          <img width={247} height={38} src={`${coloredLogo ? Logo1 : Logo2}`} />
+          <img
+            width={247}
+            height={38}
+            src={`${coloredLogo ? `/images/logo2.svg` : `/images/logo.svg`}`}
+          />
         </a>
       </Link>
     </div>
