@@ -14,7 +14,7 @@ import {
   Heading,
   Main,
   TeamImage,
-} from "./index.style";
+} from "../ui/styles/pages/index.style";
 import { BackgroundEffect } from "../ui/components/BackgroundEffect/BackgroundEffect";
 import { CenterContent } from "../ui/components/CenterContent/CenterContent";
 import { contentMainPageInfo, getMainPageInfo } from "../lib/mainPage";

@@ -4,7 +4,11 @@ import { NextPage } from "next";
 import { Header } from "../../ui/components/Header/Header";
 import { BackgroundEffect } from "../../ui/components/BackgroundEffect/BackgroundEffect";
 import "react-vertical-timeline-component/style.min.css";
-import { CardHeading, TimeLine, Element } from "./history.style";
+import {
+  CardHeading,
+  TimeLine,
+  Element,
+} from "../../ui/styles/pages/history.style";
 import v from "../../ui/styles/_variables";
 import { SectionSeparator } from "../../ui/components/SectionSeparator/SectionSeparator";
 import {
@@ -13,7 +17,7 @@ import {
   Section,
   Heading,
 } from "../../ui/styles/_pageElements";
-import { Stickers } from "../command/command.style";
+import { Stickers } from "../../ui/styles/pages/command.style";
 import { Wrapper } from "../../ui/components/PageComponent/Wrapper/Wrapper";
 import { Button } from "../../ui/components/Button/Button";
 import styled from "styled-components";

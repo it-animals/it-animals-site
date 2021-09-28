@@ -6,7 +6,7 @@ import { Wrapper } from "../../ui/components/PageComponent/Wrapper/Wrapper";
 import { CommandList } from "../../ui/components/CommandList/CommandList";
 import { SectionSeparator } from "../../ui/components/SectionSeparator/SectionSeparator";
 import { BackgroundEffect } from "../../ui/components/BackgroundEffect/BackgroundEffect";
-import { Stickers } from "./command.style";
+import { Stickers } from "../../ui/styles/pages/command.style";
 import {
   Heading,
   Section,
