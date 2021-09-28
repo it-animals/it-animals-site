@@ -2,7 +2,6 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import { Wrapper } from "../ui/components/PageComponent/Wrapper/Wrapper";
 import { Header } from "../ui/components/Header/Header";
-import Image from "next/image";
 import { AccentButton } from "../ui/components/AccentButton/AccentButton";
 import Link from "next/link";
 import {
@@ -60,9 +59,7 @@ const Home: NextPage<{ data: contentMainPageInfo }> = ({ data }) => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1, delay: 0.4 }}
               >
-                <Image
-                  layout={"responsive"}
-                  objectFit={"cover"}
+                <img
                   src={"/images/it-animals.svg"}
                   width={"100%"}
                   height={"100%"}
