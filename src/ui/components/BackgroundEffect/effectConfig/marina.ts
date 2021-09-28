@@ -30,13 +30,13 @@ export default {
       type: ["images"],
       images: [
         {
-          src: "/images/marina/microsoft-excel-2013.svg",
+          src: `${process.env.BASE_PATH}/images/marina/microsoft-excel-2013.svg`,
         },
         {
-          src: "/images/marina/microsoft-word-2013-logo.svg",
+          src: `${process.env.BASE_PATH}/images/marina/microsoft-word-2013-logo.svg`,
         },
         {
-          src: "/images/marina/miro-2.svg",
+          src: `${process.env.BASE_PATH}/images/marina/miro-2.svg`,
         },
       ],
     },

@@ -30,16 +30,16 @@ export default {
       type: ["images"],
       images: [
         {
-          src: "/images/dima/docker.svg",
+          src: `${process.env.BASE_PATH}/images/dima/docker.svg`,
         },
         {
-          src: "/images/dima/nginx-1.svg",
+          src: `${process.env.BASE_PATH}/images/dima/nginx-1.svg`,
         },
         {
-          src: "/images/dima/php-1.svg",
+          src: `${process.env.BASE_PATH}/images/dima/php-1.svg`,
         },
         {
-          src: "/images/dima/postgresql.svg",
+          src: `${process.env.BASE_PATH}/images/dima/postgresql.svg`,
         },
       ],
     },

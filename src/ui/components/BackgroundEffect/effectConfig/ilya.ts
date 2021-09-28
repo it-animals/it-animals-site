@@ -30,16 +30,16 @@ export default {
       type: ["images"],
       images: [
         {
-          src: "/images/ilya/linux-mint.svg",
+          src: `${process.env.BASE_PATH}/images/ilya/linux-mint.svg`,
         },
         {
-          src: "/images/ilya/netbeans-1.svg",
+          src: `${process.env.BASE_PATH}/images/ilya/netbeans-1.svg`,
         },
         {
-          src: "/images/ilya/postgresql.svg",
+          src: `${process.env.BASE_PATH}/images/ilya/postgresql.svg`,
         },
         {
-          src: "/images/ilya/yii.svg",
+          src: `${process.env.BASE_PATH}/images/ilya/yii.svg`,
         },
       ],
     },

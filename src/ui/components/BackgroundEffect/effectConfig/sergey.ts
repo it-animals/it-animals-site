@@ -30,16 +30,16 @@ export default {
       type: ["images"],
       images: [
         {
-          src: "/images/sergey/html-1.svg",
+          src: `${process.env.BASE_PATH}/images/sergey/html-1.svg`,
         },
         {
-          src: "/images/sergey/logo-javascript.svg",
+          src: `${process.env.BASE_PATH}/images/sergey/logo-javascript.svg`,
         },
         {
-          src: "/images/sergey/react-2.svg",
+          src: `${process.env.BASE_PATH}/images/sergey/react-2.svg`,
         },
         {
-          src: "/images/sergey/typescript.svg",
+          src: `${process.env.BASE_PATH}/images/sergey/typescript.svg`,
         },
       ],
     },
