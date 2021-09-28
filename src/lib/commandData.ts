@@ -2,6 +2,7 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import { getContentPath } from "./path";
+import { addStaticPathPrefix } from "./staticPath";
 
 const contentDirectory = path.join(getContentPath, "/command");
 
@@ -19,6 +20,10 @@ export const getCommandInfo = () => {
   const files = fs.readdirSync(contentDirectory);
   return files.map((file) => {
     const filePath = path.join(contentDirectory, file);
-    return matter(fs.readFileSync(filePath)).data;
+    const data = matter(fs.readFileSync(filePath)).data;
+    return {
+      ...data,
+      pathSticker: addStaticPathPrefix(data.pathSticker),
+    };
   });
 };

@@ -49,7 +49,9 @@ export const getHistoryMediaContentById = (id: string | number) => {
   const needDir = directories.includes(id.toString());
   if (needDir) {
     const files = fs.readdirSync(path.join(historyMediaDirectory, `/${id}`));
-    return files.map((file) => `/images/history/${id}/${file}`);
+    return files.map(
+      (file) => `${process.env.BASE_PATH}/images/history/${id}/${file}`
+    );
   }
   return [];
 };

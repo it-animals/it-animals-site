@@ -74,6 +74,7 @@ export async function getStaticProps() {
   // Получение и прокидывание данных перед самой сборкой статики
   const pageData = getCommandPageInfo();
   const commandData = getCommandInfo();
+  console.log(commandData);
   return {
     props: {
       pageData,
