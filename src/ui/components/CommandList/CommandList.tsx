@@ -25,7 +25,7 @@ export const CommandList: ComponentType<{ data: contentCommandUserInfo[] }> = ({
     <Section className={className}>
       <Wrapper>
         <TeamContentLine>
-          <Decoration src={"/images/unicorn2.svg"} height={299} width={120} />
+          <Decoration src={`${process.env.BASE_PATH}/images/unicorn2.svg`} height={299} width={120} />
           <CardList>
             {data.map((item, i) => (
               <Card
@@ -57,7 +57,7 @@ export const CommandList: ComponentType<{ data: contentCommandUserInfo[] }> = ({
               </Card>
             ))}
           </CardList>
-          <Decoration src={"/images/unicorn1.svg"} height={299} width={120} />
+          <Decoration src={`${process.env.BASE_PATH}/images/unicorn1.svg`} height={299} width={120} />
         </TeamContentLine>
       </Wrapper>
     </Section>
