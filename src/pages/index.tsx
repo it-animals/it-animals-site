@@ -61,7 +61,7 @@ const Home: NextPage<{ data: contentMainPageInfo }> = ({ data }) => {
                 transition={{ duration: 1, delay: 0.4 }}
               >
                 <img
-                  src={`${process.env["base-path"]}/images/it-animals.svg`}
+                  src={`/images/it-animals.svg`}
                   width={"100%"}
                   height={"100%"}
                 />
