@@ -12,7 +12,11 @@ export const Logo: React.FC<{ className?: string; coloredLogo?: boolean }> = ({
           <img
             width={247}
             height={38}
-            src={`${coloredLogo ? `/images/logo2.svg` : `/images/logo.svg`}`}
+            src={`${
+              coloredLogo
+                ? `${process.env.BASE_PATH}/images/logo2.svg`
+                : `${process.env.BASE_PATH}/images/logo.svg`
+            }`}
           />
         </a>
       </Link>
