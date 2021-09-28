@@ -20,6 +20,7 @@ import {
 } from "../../lib/commanPage";
 import reactHTMLParser from "react-html-parser";
 import { contentCommandUserInfo, getCommandInfo } from "../../lib/commandData";
+
 const Command: NextPage<{
   pageData: contentCommandPageInfo;
   commandData: contentCommandUserInfo[];
