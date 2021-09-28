@@ -8,7 +8,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "generate static": "next build && next export",
+    "generate static": "next build && next export && serve out",
     "prettier all": "prettier --write ./**/*.{ts,tsx,js,css}"
   },
   "dependencies": {
