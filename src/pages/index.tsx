@@ -20,6 +20,7 @@ import { contentMainPageInfo, getMainPageInfo } from "../lib/mainPage";
 import reactHTMLParser from "react-html-parser";
 
 const Home: NextPage<{ data: contentMainPageInfo }> = ({ data }) => {
+  console.log(process.env);
   return (
     <>
       <Head>
@@ -60,7 +61,7 @@ const Home: NextPage<{ data: contentMainPageInfo }> = ({ data }) => {
                 transition={{ duration: 1, delay: 0.4 }}
               >
                 <img
-                  src={"/images/it-animals.svg"}
+                  src={`${process.env["base-path"]}/images/it-animals.svg`}
                   width={"100%"}
                   height={"100%"}
                 />
