@@ -52,24 +52,24 @@ const Between = styled.div`
 
 const StickerTop = styled(Sticker)`
   animation: ${stickerAnimate} 180s linear infinite;
-  background-image: url("/images/sticker1.svg");
+  background-image: url("${process.env.BASE_PATH}/images/sticker1.svg");
 `;
 
 const StickerCenterLeft = styled(Sticker)`
   top: 50%;
   left: 0;
   animation: ${stickerAnimate} 180s linear infinite;
-  background-image: url("/images/sticker2.svg");
+  background-image: url("${process.env.BASE_PATH}/images/sticker2.svg");
 `;
 const StickerCenterRight = styled(Sticker)`
   top: 50%;
   right: 0;
   animation: ${stickerAnimate} 180s linear infinite;
-  background-image: url("/images/sticker3.svg");
+  background-image: url("${process.env.BASE_PATH}/images/sticker3.svg");
 `;
 const StickerBottom = styled(Sticker)`
   animation: ${stickerAnimate} 180s linear infinite;
-  background-image: url("/images/sticker4.svg");
+  background-image: url("${process.env.BASE_PATH}/images/sticker4.svg");
 `;
 
 export const StickerGallery: ComponentType<unknown> = ({ className }) => {
