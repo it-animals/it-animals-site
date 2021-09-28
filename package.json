@@ -1,6 +1,7 @@
 {
   "name": "it-animals-site",
   "version": "0.1.0",
+  "homepage": "/it-animals-site",
   "private": true,
   "scripts": {
     "dev": "next dev",
